@@ -1,5 +1,6 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import QRCode from 'react-native-qrcode-svg';
 
 import {
   Container,
@@ -11,10 +12,18 @@ import {
   SignOutButtonText,
 } from './styles';
 
-export default function Menu() {
+export default function Menu({translateY}) {
   return (
-    <Container>
-      <Code />
+    <Container
+      style={{
+        opacity: translateY.interpolate({
+          inputRange: [0, 150],
+          outputRange: [0, 1],
+        }),
+      }}>
+      <Code>
+        <QRCode value="http://www.google.com/" size={60} fgColor="#FFF" />
+      </Code>
       <Nav>
         <NavItem>
           <Icon name="help-outline" size={20} color="#fff" />
